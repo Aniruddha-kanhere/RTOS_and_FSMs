@@ -8,6 +8,10 @@ osMessageQueueId_t SPI_message_Q;
 SD_DEV dev[1];          // SD device descriptor
 uint8_t buffer[512];    // Buffer for SD read or write data
 
+
+//	This thread does some work (uses Nilkantha series to approximate PI)
+//	It is used as a benchmark to see how much work can be done when the
+//	RTOS is used to allocate the resources properly
 void Thread_Makework(void * a)
 {	
 	Thread_Makework_ID = osThreadGetId();
