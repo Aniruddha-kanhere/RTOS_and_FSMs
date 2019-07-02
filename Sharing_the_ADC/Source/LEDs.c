@@ -19,6 +19,12 @@ void Init_RGB_LEDs(void) {
 	PTD->PDDR |= MASK(BLUE_LED_POS);
 }
 
+//  @breif:  Controls RGB LEDs based on the red_on, green_on or blue_on variables 
+//	     passed to the Control_RGB_LEDs function
+//  @params: red_on - 1/0 red LED ON/OFF
+//	     green_on - 1/0 red LED ON/OFF
+//	     blue_on - 1/0 red LED ON/OFF
+// @return:  none
 void Control_RGB_LEDs(unsigned int red_on, unsigned int green_on, unsigned int blue_on) {
 	if (red_on) {
 			PTB->PCOR = MASK(RED_LED_POS);
@@ -36,4 +42,4 @@ void Control_RGB_LEDs(unsigned int red_on, unsigned int green_on, unsigned int b
 			PTD->PSOR = MASK(BLUE_LED_POS); 
 	}
 }	
-// *******************************ARM University Program Copyright © ARM Ltd 2013*************************************   
+// *******************************ARM University Program Copyright Â© ARM Ltd 2013*************************************   
