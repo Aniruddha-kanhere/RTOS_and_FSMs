@@ -2,8 +2,7 @@
 It's a library for use SD cards in SPI mode with uControllers, entirely written
 in C. This library can work with SD cards and also has the possibility to
 emulate the behavior in a PC file (GNU/Linux) using the macro _M_IX86. It's for
-debugging purposes. The data transfer is oriented to 512 byte size,
-remember this.
+debugging purposes. The data transfer is oriented to 512 byte size.
 
 ## Public methods
 ulibSD has four public methods:
@@ -76,21 +75,19 @@ in your hardware don't use the CS automatic capability. When you send a command
 package to SD card (command and argument), we will need the CS line in
 low-level all the time. If you use the CS automatic capability this logic will
 be broken.
-Also I strongly recommend uses a hardware timer associated with `SPI_Timer`
+Use of a hardware timer associated with `SPI_Timer` is strongly recomended
 methods.
 
 ## About license
 
 This library was strongly inspired by elm-chang [FatFs](http://elm-chan.org/fsw/ff/00index_e.html) code.
-In [reddit](https://www.reddit.com/r/microcontrollers/comments/3e71s8/its_a_library_for_use_sd_cards_in_spi_mode_with/) they ask me about if the
-library is inspired or derived from Chan work. Mister Chan hasn't a SD library
-formally, the code in general appear as API or sometime as a specific code to
-the project that he works. I have many lines similar to Mister Chan code of
-their SD driver. The spirit of this library is cover the semantics of SD cards
-specifically. Now works with Cortex-M0/+, in a near future I hope write about
-how work with 8-bit MCU successfully. Against any ambiguous interpretation I
-think the correct license will be keep the original license used by Mister Chan
-in the code of FatFS (BSD-style).
+Mister Chan hasn't a SD library formally, the code in general appear as API 
+or sometime as a specific code to the project that he works. I have many lines
+similar to Mister Chan's code for their SD driver. The spirit of this library 
+is to cover the semantics of SD cards specifically. It currently works with 
+Cortex-M0/+, in a near future I hope write a more generic version of library. 
+Against any ambiguous interpretation I think the correct license will be keep 
+the original license used by Mister Chan in the code of FatFS (BSD-style).
 
 ### License
 
