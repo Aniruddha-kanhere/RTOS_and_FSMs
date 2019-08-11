@@ -25,24 +25,24 @@ void Task_Makework(){
 	// Nilakantha Series to approximate pi
 	if (!done) {
 		term = 4.0/(n*(n+1.0)*(n+2.0));
+		
 		if (n&4) { // is multiple of four
 			term = -term;
 		}
 		prev_pi = my_pi;
 		my_pi += term;
-		if (my_pi != prev_pi) {
+		
+		if   (my_pi != prev_pi)
 			n += 2;
-		} else {
-			// Done with approximating pi
-			done = 1; 
-		}
+		else  // Done with approximating pi
+			done = 1;		
 	}	
 	// clear task debug bit
 	DEBUG_STOP(DBG_7);
 }
 
-void Task_Test_SD(void) {
-	
+
+void Task_Test_SD(void) {	
 	DEBUG_START(DBG_6);
 	
 	// Write test data to given block (sector_num) in flash. 
@@ -50,6 +50,7 @@ void Task_Test_SD(void) {
 	static enum {S_INIT, S_INIT_WAIT, S_TEST_READ, S_TEST_READ_WAIT, 
 		S_TEST_WRITE, S_TEST_WRITE_WAIT, S_TEST_VERIFY, S_TEST_VERIFY_WAIT,
 		S_ERROR} next_state = S_INIT;
+	
 	static int i;
 	static DWORD sector_num = 0, read_sector_count=0; 
 	static uint32_t sum=0;
@@ -67,6 +68,7 @@ void Task_Test_SD(void) {
 				next_state = S_INIT_WAIT;
 			}
 			break;
+	
 		case S_INIT_WAIT:
 			if ((g_trans.Status == STAT_IDLE) && (g_trans.Request == REQ_NONE)) {
 				if (g_trans.ErrorCode == SD_OK) {
@@ -77,6 +79,7 @@ void Task_Test_SD(void) {
 				}
 			} // else keep waiting in this state, since server not done
 			break;
+		
 		case S_TEST_READ:
 			// wait until SD server is idle
 			if (g_trans.Status == STAT_IDLE) {
@@ -89,6 +92,7 @@ void Task_Test_SD(void) {
 				next_state = S_TEST_READ_WAIT;
 			}
 			break;
+		
 		case S_TEST_READ_WAIT:
 			if ((g_trans.Status == STAT_IDLE) && (g_trans.Request == REQ_NONE)) {
 				if (g_trans.ErrorCode == SD_OK) { // Read was OK
@@ -105,6 +109,7 @@ void Task_Test_SD(void) {
 				}
 			} // else keep waiting in this state, since server not done
 			break;
+		
 		case S_TEST_WRITE:
 			// wait until SD server is idle
 			if (g_trans.Status == STAT_IDLE) {
@@ -121,6 +126,7 @@ void Task_Test_SD(void) {
 				next_state = S_TEST_WRITE_WAIT;
 			}
 			break;
+		
 		case S_TEST_WRITE_WAIT:			
 			if ((g_trans.Status == STAT_IDLE) && (g_trans.Request == REQ_NONE)) {
 				if (g_trans.ErrorCode == SD_OK) {
@@ -131,6 +137,7 @@ void Task_Test_SD(void) {
 				}
 			} // else keep waiting in this state, since server not done
 			break;
+		
 		case S_TEST_VERIFY:
 			// wait until SD server is idle
 			if (g_trans.Status == STAT_IDLE) {
@@ -143,6 +150,7 @@ void Task_Test_SD(void) {
 				next_state = S_TEST_VERIFY_WAIT;
 			}
 			break;
+		
 		case S_TEST_VERIFY_WAIT:
 			if ((g_trans.Status == STAT_IDLE) && (g_trans.Request == REQ_NONE)) {
 				if (g_trans.ErrorCode == SD_OK) { // Read was OK
@@ -160,6 +168,7 @@ void Task_Test_SD(void) {
 			} // else keep waiting in this state, since server not done
 			break;
 		default:
+		
 		case S_ERROR:
 			Control_RGB_LEDs(1,0,0);
 			while (1)
